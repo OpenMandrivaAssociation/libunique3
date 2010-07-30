@@ -15,6 +15,8 @@ Source0: 	http://ftp.gnome.org/pub/GNOME/sources/%oname/%{oname}-%{version}.tar.
 Buildroot: 	%{_tmppath}/%{oname}-%{version}-%{release}-buildroot
 BuildRequires:	dbus-glib-devel >= 0.70
 BuildRequires:	gtk+3-devel
+#gw: the gir stuff in 2.90.1 still needs this:
+BuildRequires:	gtk+2-devel
 BuildRequires:	glib2-devel >= 2.12.0
 BuildRequires:	gobject-introspection-devel
 BuildRequires:	gtk-doc
