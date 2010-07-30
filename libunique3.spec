@@ -1,20 +1,20 @@
 %define major 		0
-%define api 1.0
-%define libname		%mklibname unique %major
-%define develname	%mklibname unique -d
+%define api 3.0
+%define oname libunique
+%define libname		%mklibname unique %api %major
+%define develname	%mklibname unique -d %api
 
 Summary: 	Library for creating single instance applications
-Name: 		libunique
-Version: 	1.1.6
-Release:	%mkrel 2
+Name: 		libunique3
+Version: 	2.90.1
+Release:	%mkrel 1
 URL: 		http://live.gnome.org/LibUnique
 License: 	LGPLv2+
 Group: 		System/Libraries
-Source0: 	http://ftp.gnome.org/pub/GNOME/sources/%name/%{name}-%{version}.tar.bz2
-Patch0:		unique-1.0.6-fix-str-fmt.patch
-Buildroot: 	%{_tmppath}/%{name}-%{version}-%{release}-buildroot
+Source0: 	http://ftp.gnome.org/pub/GNOME/sources/%oname/%{oname}-%{version}.tar.bz2
+Buildroot: 	%{_tmppath}/%{oname}-%{version}-%{release}-buildroot
 BuildRequires:	dbus-glib-devel >= 0.70
-BuildRequires:	gtk+2-devel >= 2.11.0
+BuildRequires:	gtk+3-devel
 BuildRequires:	glib2-devel >= 2.12.0
 BuildRequires:	gobject-introspection-devel
 BuildRequires:	gtk-doc
@@ -32,8 +32,8 @@ Unique is a library for creating single instance applications.
 
 %package -n %{develname}
 Group:		Development/C
-Summary:	Header files for development with %name
-Provides:	unique-devel = %{version}
+Summary:	Header files for development with %oname
+Provides:	unique-%api-devel = %version-%release
 Requires:	%{libname} = %{version}
 Conflicts: gir-repository < 0.6.5-3
 
@@ -41,8 +41,7 @@ Conflicts: gir-repository < 0.6.5-3
 Unique is a library for creating single instance applications.
 
 %prep
-%setup -q
-%patch0 -p0
+%setup -q -n %oname-%version
 
 %build
 %configure2_5x
@@ -52,11 +51,6 @@ Unique is a library for creating single instance applications.
 rm -rf %{buildroot}
 
 %makeinstall_std
-
-%if %mdkversion < 200900
-%post -n %{libname} -p /sbin/ldconfig
-%postun -n %{libname} -p /sbin/ldconfig
-%endif
 
 %clean
 rm -rf %{buildroot}
