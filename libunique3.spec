@@ -6,18 +6,17 @@
 
 Summary: 	Library for creating single instance applications
 Name: 		libunique3
-Version: 	2.90.1
-Release:	%mkrel 2
+Version: 	2.91.4
+Release:	%mkrel 1
 URL: 		http://live.gnome.org/LibUnique
 License: 	LGPLv2+
 Group: 		System/Libraries
 Source0: 	http://ftp.gnome.org/pub/GNOME/sources/%oname/%{oname}-%{version}.tar.bz2
 Buildroot: 	%{_tmppath}/%{oname}-%{version}-%{release}-buildroot
 BuildRequires:	dbus-glib-devel >= 0.70
-BuildRequires:	gtk+3-devel
-#gw: the gir stuff in 2.90.1 still needs this:
-BuildRequires:	gtk+2-devel
+BuildRequires:	gtk+3-devel >= 2.90.0
 BuildRequires:	glib2-devel >= 2.12.0
+BuildRequires:	libx11-devel
 BuildRequires:	gobject-introspection-devel
 BuildRequires:	gtk-doc
 
