@@ -69,3 +69,4 @@ rm -rf %{buildroot}
 %{_libdir}/pkgconfig/unique-%api.pc
 %{_includedir}/unique-%api
 %_datadir/gir-1.0/Unique-%api.gir
+%_datadir/gtk-doc/html/unique-3.0
