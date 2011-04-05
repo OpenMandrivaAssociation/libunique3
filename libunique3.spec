@@ -63,8 +63,6 @@ rm -rf %{buildroot}
 
 %files -n %{develname}
 %doc AUTHORS
-%docdir %{_datadir}/gtk-doc/html/unique
-%doc %{_datadir}/gtk-doc/html/unique/*
 %defattr(-,root,root)
 %{_libdir}/libunique-%api.so
 %{_libdir}/libunique-%api.*a
