@@ -6,12 +6,12 @@
 
 Summary: 	Library for creating single instance applications
 Name: 		libunique3
-Version: 	3.0.0
+Version: 	3.0.2
 Release:	%mkrel 1
 URL: 		http://live.gnome.org/LibUnique
 License: 	LGPLv2+
 Group: 		System/Libraries
-Source0: 	http://ftp.gnome.org/pub/GNOME/sources/%oname/%{oname}-%{version}.tar.bz2
+Source0: 	http://ftp.gnome.org/pub/GNOME/sources/%oname/%{oname}-%{version}.tar.xz
 Buildroot: 	%{_tmppath}/%{oname}-%{version}-%{release}-buildroot
 BuildRequires:	dbus-glib-devel >= 0.70
 BuildRequires:	gtk+3-devel >= 2.90.0
