@@ -1,24 +1,26 @@
 %define major 		0
 %define api 3.0
 %define oname libunique
-%define libname		%mklibname unique %api %major
-%define develname	%mklibname unique -d %api
+%define libname		%mklibname unique %{api} %{major}
+%define develname	%mklibname unique -d %{api}
+%define gi_name		%mklibname unique-gir %{api}
 
 Summary: 	Library for creating single instance applications
 Name: 		libunique3
 Version: 	3.0.2
-Release:	%mkrel 1
+Release:	2
 URL: 		http://live.gnome.org/LibUnique
 License: 	LGPLv2+
 Group: 		System/Libraries
-Source0: 	http://ftp.gnome.org/pub/GNOME/sources/%oname/%{oname}-%{version}.tar.xz
-Buildroot: 	%{_tmppath}/%{oname}-%{version}-%{release}-buildroot
-BuildRequires:	dbus-glib-devel >= 0.70
-BuildRequires:	gtk+3-devel >= 2.90.0
-BuildRequires:	glib2-devel >= 2.12.0
-BuildRequires:	libx11-devel
-BuildRequires:	gobject-introspection-devel
+Source0: 	http://ftp.gnome.org/pub/GNOME/sources/%{oname}/%{oname}-%{version}.tar.xz
+
 BuildRequires:	gtk-doc
+BuildRequires:	pkgconfig(dbus-glib-1) >= 0.70
+BuildRequires:	pkgconfig(gdk-3.0)
+BuildRequires:	pkgconfig(glib-2.0)
+BuildRequires:	pkgconfig(gobject-2.0)
+BuildRequires:	pkgconfig(gobject-introspection-1.0)
+BuildRequires:	pkgconfig(x11)
 
 %description
 Unique is a library for creating single instance applications.
@@ -33,40 +35,50 @@ Unique is a library for creating single instance applications.
 
 %package -n %{develname}
 Group:		Development/C
-Summary:	Header files for development with %oname
-Provides:	unique-%api-devel = %version-%release
-Requires:	%{libname} = %{version}
+Summary:	Header files for development with %{oname}
+Provides:	unique-%{api}-devel = %{version}-%{release}
+Requires:	%{libname} = %{version}%{release}
 Conflicts: gir-repository < 0.6.5-3
 
 %description -n %{develname}
 Unique is a library for creating single instance applications.
 
+%package -n %{gi_name}
+Group: System/Libraries
+Summary: GObject Introspection interface library for libunique
+Requires: %{libname} = %{version}-%{release}
+
+%description -n %{gi_name}
+GObject Introspection interface library for libunique.
+
+
 %prep
-%setup -q -n %oname-%version
+%setup -qn %{oname}-%{version}
 
 %build
-%configure2_5x
+%configure2_5x \
+	--disable-static \
+	--enable-introspection=yes
+
 %make
 
 %install
 rm -rf %{buildroot}
-
 %makeinstall_std
 
-%clean
-rm -rf %{buildroot}
+# remove unpackaged files
+find %{buildroot} -name '*.la' -exec rm -f {} ';'
 
 %files -n %{libname}
-%defattr(-,root,root)
-%{_libdir}/libunique-%api.so.%{major}*
-%_libdir/girepository-1.0/Unique-%{api}.typelib
+%{_libdir}/libunique-%{api}.so.%{major}*
+
+%files -n %{gi_name}
+%{_libdir}/girepository-1.0/Unique-%{api}.typelib
 
 %files -n %{develname}
 %doc AUTHORS
-%defattr(-,root,root)
-%{_libdir}/libunique-%api.so
-%{_libdir}/libunique-%api.*a
-%{_libdir}/pkgconfig/unique-%api.pc
-%{_includedir}/unique-%api
-%_datadir/gir-1.0/Unique-%api.gir
-%_datadir/gtk-doc/html/unique-3.0
+%{_libdir}/libunique-%{api}.so
+%{_libdir}/pkgconfig/unique-%{api}.pc
+%{_includedir}/unique-%{api}
+%{_datadir}/gir-1.0/Unique-%{api}.gir
+%{_datadir}/gtk-doc/html/unique-3.0
