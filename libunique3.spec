@@ -14,13 +14,11 @@ License: 	LGPLv2+
 Group: 		System/Libraries
 Source0: 	http://ftp.gnome.org/pub/GNOME/sources/%{oname}/%{oname}-%{version}.tar.xz
 
-BuildRequires:	gtk-doc
 BuildRequires:	pkgconfig(dbus-glib-1) >= 0.70
 BuildRequires:	pkgconfig(gdk-3.0)
 BuildRequires:	pkgconfig(glib-2.0)
 BuildRequires:	pkgconfig(gobject-2.0)
 BuildRequires:	pkgconfig(gobject-introspection-1.0)
-BuildRequires:	pkgconfig(x11)
 
 %description
 Unique is a library for creating single instance applications.
@@ -44,13 +42,12 @@ Conflicts: gir-repository < 0.6.5-3
 Unique is a library for creating single instance applications.
 
 %package -n %{gi_name}
-Group: System/Libraries
-Summary: GObject Introspection interface library for libunique
-Requires: %{libname} = %{version}-%{release}
+Group:		System/Libraries
+Summary:	GObject Introspection interface library for libunique
+Requires:	%{libname} = %{version}-%{release}
 
 %description -n %{gi_name}
 GObject Introspection interface library for libunique.
-
 
 %prep
 %setup -qn %{oname}-%{version}
@@ -82,3 +79,4 @@ find %{buildroot} -name '*.la' -exec rm -f {} ';'
 %{_includedir}/unique-%{api}
 %{_datadir}/gir-1.0/Unique-%{api}.gir
 %{_datadir}/gtk-doc/html/unique-3.0
+
