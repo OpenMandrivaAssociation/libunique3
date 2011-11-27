@@ -8,7 +8,7 @@
 Summary: 	Library for creating single instance applications
 Name: 		libunique3
 Version: 	3.0.2
-Release:	2
+Release:	3
 URL: 		http://live.gnome.org/LibUnique
 License: 	LGPLv2+
 Group: 		System/Libraries
@@ -35,7 +35,7 @@ Unique is a library for creating single instance applications.
 Group:		Development/C
 Summary:	Header files for development with %{oname}
 Provides:	unique-%{api}-devel = %{version}-%{release}
-Requires:	%{libname} = %{version}%{release}
+Requires:	%{libname} = %{version}-%{release}
 Conflicts: gir-repository < 0.6.5-3
 
 %description -n %{develname}
