@@ -12,12 +12,12 @@ URL: 		http://live.gnome.org/LibUnique
 License: 	LGPLv2+
 Group: 		System/Libraries
 Source0: 	http://ftp.gnome.org/pub/GNOME/sources/%{oname}/%{oname}-%{version}.tar.xz
-BuildRequires:	dbus-glib-devel >= 0.70
-BuildRequires:	gtk+3-devel >= 2.90.0
-BuildRequires:	glib2-devel >= 2.12.0
-BuildRequires:	libx11-devel
-BuildRequires:	gobject-introspection-devel
-BuildRequires:	gtk-doc
+BuildRequires:	pkgconfig(dbus-glib-1)
+BuildRequires:	pkgconfig(gdk-3.0)
+BuildRequires:	pkgconfig(glib-2.0)
+BuildRequires:	pkgconfig(x11)
+BuildRequires:	pkgconfig(gobject-introspection-1.0)
+BuildRequires:	pkgconfig(gtk-doc)
 
 %description
 Unique is a library for creating single instance applications.
