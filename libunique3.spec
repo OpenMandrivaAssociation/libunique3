@@ -1,18 +1,17 @@
-%define major 		0
-%define api 3.0
-%define oname libunique
-%define libname		%mklibname unique %api %major
-%define develname	%mklibname unique -d %api
+%define	major	0
+%define	api	3.0
+%define	oname	libunique
+%define	libname	%mklibname unique %{api} %{major}
+%define	devname	%mklibname unique -d %{api}
 
 Summary: 	Library for creating single instance applications
 Name: 		libunique3
 Version: 	3.0.2
-Release:	%mkrel 1
+Release:	2
 URL: 		http://live.gnome.org/LibUnique
 License: 	LGPLv2+
 Group: 		System/Libraries
-Source0: 	http://ftp.gnome.org/pub/GNOME/sources/%oname/%{oname}-%{version}.tar.xz
-Buildroot: 	%{_tmppath}/%{oname}-%{version}-%{release}-buildroot
+Source0: 	http://ftp.gnome.org/pub/GNOME/sources/%{oname}/%{oname}-%{version}.tar.xz
 BuildRequires:	dbus-glib-devel >= 0.70
 BuildRequires:	gtk+3-devel >= 2.90.0
 BuildRequires:	glib2-devel >= 2.12.0
@@ -26,49 +25,42 @@ Unique is a library for creating single instance applications.
 %package -n	%{libname}
 Group:		System/Libraries
 Summary:	Library for creating single instance applications
-Conflicts: gir-repository < 0.6.5-3
+Conflicts:	gir-repository < 0.6.5-3
 
-%description -n %{libname}
+%description -n	%{libname}
 Unique is a library for creating single instance applications.
 
-%package -n %{develname}
+%package -n	%{devname}
 Group:		Development/C
-Summary:	Header files for development with %oname
-Provides:	unique-%api-devel = %version-%release
+Summary:	Header files for development with %{oname}
+Provides:	unique-%{api}-devel = %{version}-%{release}
 Requires:	%{libname} = %{version}
-Conflicts: gir-repository < 0.6.5-3
+Conflicts:	gir-repository < 0.6.5-3
 
-%description -n %{develname}
+%description -n	%{devname}
 Unique is a library for creating single instance applications.
 
 %prep
-%setup -q -n %oname-%version
+%setup -q -n %{oname}-%{version}
 
 %build
 %configure2_5x
 %make
 
 %install
-rm -rf %{buildroot}
-
 %makeinstall_std
 
-%clean
-rm -rf %{buildroot}
-
 %files -n %{libname}
-%defattr(-,root,root)
 %{_libdir}/libunique-%api.so.%{major}*
-%_libdir/girepository-1.0/Unique-%{api}.typelib
+%{_libdir}/girepository-1.0/Unique-%{api}.typelib
 
-%files -n %{develname}
+%files -n %{devname}
 %doc AUTHORS
-%defattr(-,root,root)
 %{_libdir}/libunique-%api.so
 %{_libdir}/pkgconfig/unique-%api.pc
 %{_includedir}/unique-%api
-%_datadir/gir-1.0/Unique-%api.gir
-%_datadir/gtk-doc/html/unique-3.0
+%{_datadir}/gir-1.0/Unique-%api.gir
+%{_datadir}/gtk-doc/html/unique-3.0
 
 
 %changelog
