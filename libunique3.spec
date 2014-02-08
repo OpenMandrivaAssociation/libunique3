@@ -10,7 +10,7 @@
 Summary: 	Library for creating single instance applications
 Name: 		libunique3
 Version: 	3.0.2
-Release:	5
+Release:	6
 License: 	LGPLv2+
 Group: 		System/Libraries
 Url: 		http://live.gnome.org/LibUnique
