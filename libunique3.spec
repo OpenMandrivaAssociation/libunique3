@@ -13,7 +13,7 @@ Version: 	3.0.2
 Release:	17
 License: 	LGPLv2+
 Group: 		System/Libraries
-Url: 		http://live.gnome.org/LibUnique
+Url: 		https://live.gnome.org/LibUnique
 Source0: 	http://ftp.gnome.org/pub/GNOME/sources/libunique/%{url_ver}/%{oname}-%{version}.tar.xz
 BuildRequires:	pkgconfig(dbus-glib-1)
 BuildRequires:	pkgconfig(gdk-3.0)
