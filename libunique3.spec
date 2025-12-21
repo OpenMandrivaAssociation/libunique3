@@ -15,6 +15,11 @@ License: 	LGPLv2+
 Group: 		System/Libraries
 Url: 		https://live.gnome.org/LibUnique
 Source0: 	http://ftp.gnome.org/pub/GNOME/sources/libunique/%{url_ver}/%{oname}-%{version}.tar.xz
+BuildRequires:	autoconf
+BuildRequires:	automake
+BuildRequires:	libtool-base
+BuildRequires:	slibtool
+BuildRequires:	make
 BuildRequires:	pkgconfig(dbus-glib-1)
 BuildRequires:	pkgconfig(gdk-3.0)
 BuildRequires:	pkgconfig(glib-2.0)
